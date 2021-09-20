@@ -1,7 +1,8 @@
 import tkinter as t
+import consts as c
 from screen.intro import Intro
 
-canvas = t.Canvas(width=900, height=600, bg='black')
+canvas = t.Canvas(width=c.WIDTH, height=c.HEIGHT, bg='black')
 canvas.pack()
 
 Intro(canvas)
