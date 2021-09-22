@@ -22,10 +22,10 @@ class Input:
         y = self.y
         width = self.width
         self.canvas.create_rectangle(x-width//2,y,x+width//2,y+40, fill='green', outline='', tag=self.tag)
-        self.canvas.create_text(x, y + 5, text=self.value['heading'], font=c.REGULAR_FONT, fill='black', anchor='n', tag=self.tag)
+        self.canvas.create_text(x, y, text=self.value['heading'], font=c.REGULAR_FONT, fill='black', anchor='n', tag=self.tag)
 
         self.canvas.create_rectangle(x-width//2,y+100,x+width//2,y+140, fill='black', outline='green', tag=self.tag)
-        self.canvas.create_text(x, y + 105, text=self.name, font=c.REGULAR_FONT, fill='green', anchor='n', tag=self.tag)
+        self.canvas.create_text(x, y + 100, text=self.name, font=c.REGULAR_FONT, fill='green', anchor='n', tag=self.tag)
 
     def handle_input(self, key):
         new_name = self.name + key.char

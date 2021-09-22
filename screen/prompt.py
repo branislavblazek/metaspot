@@ -18,7 +18,7 @@ class Prompt:
 
     def render_prompt(self, x, y, width):
         self.canvas.create_rectangle(x-width//2,y,x+width//2,y+40, fill='green', outline='', tag=self.tag)
-        self.canvas.create_text(x, y + 5, text=self.value['heading'], font=c.REGULAR_FONT, fill='black', anchor='n', tag=self.tag)
+        self.canvas.create_text(x, y, text=self.value['heading'], font=c.REGULAR_FONT, fill='black', anchor='n', tag=self.tag)
 
         length = len(self.value['data'])
         box_width = width // length
@@ -27,8 +27,8 @@ class Prompt:
             start = x + (i - 1) * box_width
             box_color = 'green' if i == self.active_index else 'black'
             text_color = 'black' if i == self.active_index else 'green'
-            self.canvas.create_rectangle(start, y+100, start + box_width, y+140, fill=box_color, outline='', tag=self.tag)
-            self.canvas.create_text(start + box_width // 2, y+105, text=self.value['data'][i]['text'], font=c.REGULAR_FONT, fill=text_color, anchor='n', tag=self.tag)
+            self.canvas.create_rectangle(start, y + 100, start + box_width, y+140, fill=box_color, outline='', tag=self.tag)
+            self.canvas.create_text(start + box_width // 2, y + 100, text=self.value['data'][i]['text'], font=c.REGULAR_FONT, fill=text_color, anchor='n', tag=self.tag)
 
     def handle_enter(self, _):
         self.on_select(self.value['data'][self.active_index]['value'])
