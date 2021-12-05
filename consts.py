@@ -16,3 +16,12 @@ INTRO_COMPONENT_WIDTH = 700
 
 SELECT_ACTIVE = '-> '
 SELECT_ACTIVE_OFFSET = 70
+
+# ACTIONS
+EXIT_INTRO = 'Exit Intro'
+EXIT_GAME = 'Exit Game'
+EXIT_MENU = 'Exit Menu'
+EXIT_LEVEL_MENU = 'Exit Level Menu'
+EDIT_NAME = 'Edit Name'
+START_HANGMAN = 'Start Hangman'
+START_CRACK_THE_CODE = 'Start Crack the Code'
