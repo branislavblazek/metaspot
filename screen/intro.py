@@ -1,5 +1,5 @@
 import consts as c
-import data as d
+import data_general as d
 from screen.select import Select
 from screen.prompt import Prompt
 from screen.input import Input

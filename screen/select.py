@@ -10,11 +10,16 @@ class Select(object):
         self.choices = choices
 
         for i in range(len(choices)):
-            self.render_choice(x, y+(offset * i), choices[i]['text'], i == active_index)
+            is_unlocked = self.get_is_unlocked(choices[i])
+            text = ''.join([choices[i]['text'], '' if is_unlocked else ' [locked]'])
+            self.render_choice(x, y+(offset * i), text, i == active_index)
 
         self.canvas.bind_all('<Up>', self.handle_input)
         self.canvas.bind_all('<Down>', self.handle_input)
         self.canvas.bind_all('<Return>', self.handle_enter)
+
+    def get_is_unlocked(self, item):
+        return item['unlocked'] if "unlocked" in item else True
 
     def render_choice(self, x, y, value, active=False):
         if active:
@@ -22,7 +27,8 @@ class Select(object):
         self.canvas.create_text(x, y, text=value, font=c.REGULAR_FONT, fill="green", anchor="nw", tag=self.tag)
 
     def handle_enter(self, _):
-        self.on_select(self.active_index)
+        is_unlocked = self.get_is_unlocked(self.choices[self.active_index])
+        if is_unlocked: self.on_select(self.active_index)
 
     def handle_input(self, input):
         add_number = -1 if input.keysym == 'Up' else 1 if input.keysym == 'Down' else 0

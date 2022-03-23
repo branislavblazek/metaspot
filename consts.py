@@ -25,3 +25,8 @@ EXIT_LEVEL_MENU = 'Exit Level Menu'
 EDIT_NAME = 'Edit Name'
 START_HANGMAN = 'Start Hangman'
 START_CRACK_THE_CODE = 'Start Crack the Code'
+
+# FILES
+USER_FILE = 'data/user.txt'
+USER_NAME = 'name'
+USER_SCORE = 'score'
