@@ -1,7 +1,6 @@
 import tkinter as t
 import consts as c
-import data_general as d
-from data_handler import GetName, GetScore, SetName
+from data_handler import GetName, GetScore, SetName, GetGames
 from screen.intro import Intro
 from screen.menu import Menu
 
@@ -15,6 +14,7 @@ class Metaspot:
 		self.isMenu = False
 		self.name = str(GetName())
 		self.score = GetScore()
+		self.games = GetGames().get_data()
 		self.render()
 
 	def handle_action(self, attr):
@@ -36,11 +36,11 @@ class Metaspot:
 		self.canvas.delete('all')
 
 		self.canvas.create_text(c.HALF_WIDTH,100, text="://metaspot",font=c.HEADING_FONT, fill='green')
-		self.canvas.create_text(10,570, text="version: 0.5", font=c.SMALL_FONT, fill="green", anchor="nw")
+		self.canvas.create_text(10,570, text="version: 0.6", font=c.SMALL_FONT, fill="green", anchor="nw")
 		self.canvas.create_text(c.WIDTH-300,570, text="made by: branislav", font=c.SMALL_FONT, fill="green", anchor="nw")
 
 		if self.isIntro: Intro(canvas, self.name, self.score, self.handle_action, self.handle_new_name)
-		if self.isMenu: Menu(canvas, d.MENU_GAMES, self.handle_action)
+		if self.isMenu: Menu(canvas, self.games, self.handle_action)
 
 		canvas.mainloop()
 

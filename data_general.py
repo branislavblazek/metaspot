@@ -31,26 +31,23 @@ MENU_GAMES = [
 	{
 		'text': 'Hangman',
 		'value': c.START_HANGMAN,
+        'levels_data': 'data/hangman.txt',
         'levels': [
             {
                 'text': 'Level 01',
-                'value': 0,
-                'unlocked': True
+                'value': 0
             },
             {
                 'text': 'Level 02',
-                'value': 1,
-                'unlocked': False
+                'value': 1
             },
             {
                 'text': 'Level 03',
-                'value': 2,
-                'unlocked': False
+                'value': 2
             },
             {
                 'text': 'Level 04',
-                'value': 3,
-                'unlocked': False
+                'value': 3
             },
             {
                 'text': 'go back',
@@ -61,36 +58,33 @@ MENU_GAMES = [
 	{
 		'text': 'Crack the Code [under dev]',
 		'value': c.START_CRACK_THE_CODE,
+        'levels_data': 'data/crack_the_code.txt',
         'levels': [
             {
                 'text': 'Level 01',
-                'value': 0,
-                'unlocked': True
+                'value': 0
             },
             {
                 'text': 'Level 02',
-                'value': 1,
-                'unlocked': False
+                'value': 1
             },
             {
                 'text': 'Level 03',
-                'value': 2,
-                'unlocked': False
+                'value': 2
             },
             {
                 'text': 'Level 04',
                 'value': 3,
-                'unlocked': False
             },
             {
                 'text': 'go back',
-                'value': c.EXIT_LEVEL_MENU,
-                'unlocked': False
+                'value': c.EXIT_LEVEL_MENU
             },
         ]
 	},
 	{
 		'text': 'go back',
+        'name': 'exit',
 		'value': c.EXIT_MENU,
 	},
 ]

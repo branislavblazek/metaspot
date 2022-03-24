@@ -57,5 +57,4 @@ class Menu:
 		elif self.selected_game is not None:
 			self.canvas.create_text(50, c.INTRO_COMPONENT_OFFSET, text="Select level you want to play:", font=c.REGULAR_FONT, fill='green', anchor='nw', tag=self.tag)
 			levels = list(filter(self.find_level, self.games))[0]['levels']
-			print(levels)
 			Select(self.canvas, c.INTRO_SELECT_START[0], c.INTRO_SELECT_START[1], c.INTRO_SELECT_OFFSET, levels, self.handle_select_input, self.handle_select_enter, self.level_index, self.tag)
