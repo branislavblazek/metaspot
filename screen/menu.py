@@ -4,7 +4,7 @@ from screen.select import Select
 class Menu:
 	def __init__(self, canvas, games, handle_action):
 		self.canvas = canvas
-		self.tag = 'tag'
+		self.tag = 'menu'
 		self.games = games
 		self.selected_game = None
 		self.selected_level = None
@@ -43,8 +43,7 @@ class Menu:
 				self.render()
 			else:
 				self.selected_level = value
-				print(self.games)
-				print(self.selected_game, self.selected_level)
+				self.on_action(self.selected_game, self.selected_level)
 
 		self.render()
 

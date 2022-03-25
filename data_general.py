@@ -35,19 +35,23 @@ MENU_GAMES = [
         'levels': [
             {
                 'text': 'Level 01',
-                'value': 0
+                'value': 0,
+                'data': 'python'
             },
             {
                 'text': 'Level 02',
-                'value': 1
+                'value': 1,
+                'data': 'mathematics'
             },
             {
                 'text': 'Level 03',
-                'value': 2
+                'value': 2,
+                'data': 'congratulation'
             },
             {
                 'text': 'Level 04',
-                'value': 3
+                'value': 3,
+                'data': 'linear algebra is not hard'
             },
             {
                 'text': 'go back',
