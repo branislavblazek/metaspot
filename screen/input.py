@@ -3,6 +3,7 @@ import consts as c
 class Input:
     def __init__(self, canvas, x, y, width, value, on_select, name, tag):
         self.canvas = canvas
+        self.is_active = True
         self.x = x
         self.y = y
         self.width = width
@@ -28,11 +29,13 @@ class Input:
         self.canvas.create_text(x, y + 100, text=self.name, font=c.REGULAR_FONT, fill='green', anchor='n', tag=self.tag)
 
     def handle_input(self, key):
+        if not self.is_active: return
         new_name = self.name + key.char
         self.name = new_name if len(new_name) <= 15 else self.name
         self.render_input()
 
     def handle_remove(self, _):
+        if not self.is_active: return
         if len(self.name) >= 1:
             self.name = self.name[:-1]
         else:
@@ -40,4 +43,6 @@ class Input:
         self.render_input()
 
     def handle_enter(self, _):
+        if not self.is_active: return
+        self.is_active = False
         self.on_select(self.name)

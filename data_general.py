@@ -36,7 +36,7 @@ MENU_GAMES = [
             {
                 'text': 'Level 01',
                 'value': 0,
-                'data': 'python'
+                'data': 'pythonAZaz'
             },
             {
                 'text': 'Level 02',
@@ -92,4 +92,20 @@ MENU_GAMES = [
 		'value': c.EXIT_MENU,
 	},
 ]
+
+GAME_OVER_ACTIONS = {
+    'text': 'exit',
+    'value': c.EXIT_GAME,
+    'heading': 'What to do now?',
+    'data': [
+        {
+            'text': 'Exit game',
+            'value': c.EXIT_GAME,
+        },
+        {
+            'text': 'Restart game',
+            'value': c.RESTART_GAME,
+        },
+    ],
+}
 

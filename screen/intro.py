@@ -1,6 +1,5 @@
 import consts as c
 import data_general as d
-# TODO update
 from screen.select import Select
 from screen.prompt import Prompt
 from screen.input import Input
