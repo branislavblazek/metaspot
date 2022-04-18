@@ -3,6 +3,7 @@ import data_general as d
 from screen.select import Select
 from screen.prompt import Prompt
 from screen.input import Input
+from data_handler import ResetStats
 
 class Intro:
     def __init__(self, canvas, name, score, handle_action, handle_name_change):
@@ -10,6 +11,7 @@ class Intro:
         self.tag = 'intro'
         self.active_index = 0
         self.exit_prompt_index = 0
+        self.reset_stats_index = 0
         self.name = name
         self.score = score
         self.choices = d.INTRO_ACTIONS
@@ -27,6 +29,11 @@ class Intro:
         self.active_index = active_index
         self.render()
 
+    def handle_name_enter(self, new_name):
+        self.on_name_change(new_name)
+        self.active_choice = None
+        self.render()
+
     def handle_exit_enter(self, chosen_value):
         if chosen_value == False:
             self.active_choice = None
@@ -38,10 +45,17 @@ class Intro:
         self.exit_prompt_index = active_index
         self.render()
 
-    def handle_name_enter(self, new_name):
-        self.on_name_change(new_name)
-        self.active_choice = None
+    def handle_reset_stats_input(self, active_index):
+        self.reset_stats_index = active_index
         self.render()
+
+    def handle_reset_stats_enter(self, chosen_value):
+        if chosen_value == False:
+            self.active_choice = None
+            self.render()
+        elif chosen_value == True:
+            ResetStats()
+            self.on_action(c.RESET_STATS)
 
     def render(self):
         self.canvas.delete(self.tag)
@@ -53,5 +67,7 @@ class Intro:
             self.on_action(c.EXIT_INTRO)
         elif self.active_choice == c.EDIT_NAME:
             Input(self.canvas, c.HALF_WIDTH, c.INTRO_COMPONENT_OFFSET, c.INTRO_COMPONENT_WIDTH, self.choices[1], self.handle_name_enter, self.name, self.tag)
+        elif self.active_choice == c.RESET_STATS:
+            Prompt(self.canvas, c.HALF_WIDTH, c.INTRO_COMPONENT_OFFSET, c.INTRO_COMPONENT_WIDTH, self.choices[2], self.handle_reset_stats_input, self.handle_reset_stats_enter, self.reset_stats_index, self.tag)
         elif self.active_choice == c.EXIT_GAME:
             Prompt(self.canvas, c.HALF_WIDTH, c.INTRO_COMPONENT_OFFSET, c.INTRO_COMPONENT_WIDTH, self.choices[2], self.handle_exit_input, self.handle_exit_enter, self.exit_prompt_index, self.tag)

@@ -27,6 +27,7 @@ EDIT_NAME = 'Edit Name'
 START_HANGMAN = 'Start Hangman'
 START_CRACK_THE_CODE = 'Start Crack the Code'
 RESTART_GAME = 'Restart Game'
+RESET_STATS = 'Reset Stats'
 
 # FILES
 USER_FILE = 'data/user.txt'

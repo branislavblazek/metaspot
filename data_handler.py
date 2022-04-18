@@ -19,17 +19,24 @@ class GetData:
     def get_values(self): return self.values
 
 class SetData:
-    def __init__(self, file, key, value):
+    def __init__(self, file, key, value=None):
         self.file = file
-        self.data = GetData(file).get_values()
-        if key in self.data:
-            self.data[key] = value
-            self.write_data()
 
-    def write_data(self):
+        if value == None: 
+            self.write_data(key)
+        else:
+            self.data = GetData(file).get_values()
+            if key in self.data:
+                self.data[key] = value
+                self.write_data()
+
+    def write_data(self, data=None):
         file = open(self.file, 'w')
-        for key in self.data.keys():
-            file.write('{}: {}\n'.format(key, self.data[key]))
+        source = data if data != None else self.data
+        
+        for key in source.keys():
+            file.write('{}: {}\n'.format(key, source[key]))
+
 
 class GetName:
     def __init__(self): self.name = GetData(USER_FILE).get_value(USER_NAME)
@@ -64,3 +71,20 @@ class GetGames:
             self.games_data.append(game)
 
     def get_data(self): return self.games_data
+
+class ResetStats:
+    def __init__(self):
+        self.new_data = []
+
+        for game in MENU_GAMES:
+            if 'levels' in game and 'levels_data' in game:
+                reseted_levels = dict()
+                for current_level in game['levels']:
+                    if 'data' in current_level:
+                        if current_level['value'] == 0:
+                            reseted_levels[0] = 1
+                        else:
+                            reseted_levels[current_level['value']] = 0
+                if len(reseted_levels.keys()):
+                    SetData(game['levels_data'], reseted_levels)
+        SetData(USER_FILE, USER_SCORE, 0)

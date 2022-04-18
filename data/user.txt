@@ -1,2 +1,2 @@
 name: branislav
-score: 100
+score: 0

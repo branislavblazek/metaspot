@@ -11,6 +11,21 @@ INTRO_ACTIONS = [
         'heading': 'Edit here your name:',
     },
     {
+        'text': 'reset stats',
+        'value': c.RESET_STATS,
+        'heading': 'Are you sure?',
+        'data': [
+            {
+                'text': 'No!',
+                'value': False,
+            },
+            {
+                'text': 'Yes!',
+                'value': True,
+            }
+        ]
+    },
+    {
         'text': 'exit',
         'value': c.EXIT_GAME,
         'heading': 'Are you sure?',
@@ -36,22 +51,26 @@ MENU_GAMES = [
             {
                 'text': 'Level 01',
                 'value': 0,
-                'data': 'pythonAZaz'
+                'data': 'pythonAZaz',
+                'credit': 5,
             },
             {
                 'text': 'Level 02',
                 'value': 1,
-                'data': 'mathematics'
+                'data': 'mathematics',
+                'credit': 10,
             },
             {
                 'text': 'Level 03',
                 'value': 2,
-                'data': 'congratulation'
+                'data': 'congratulation',
+                'credit': 15,
             },
             {
                 'text': 'Level 04',
                 'value': 3,
-                'data': 'linear algebra is not hard'
+                'data': 'linearalgebra',
+                'credit': 20,
             },
             {
                 'text': 'go back',
