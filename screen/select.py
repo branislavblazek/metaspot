@@ -1,4 +1,7 @@
+from tkinter.tix import MAX
 import consts as c
+
+MAX_SHOW = 5
 
 class Select(object):
     def __init__(self, canvas, x, y, offset, choices, on_input, on_select, active_index=0, tag=''):
@@ -9,10 +12,13 @@ class Select(object):
         self.active_index = active_index
         self.choices = choices
 
-        for i in range(len(choices)):
+        start = 0 if self.active_index < MAX_SHOW else (self.active_index + 1) % MAX_SHOW
+        print(self.active_index, MAX_SHOW)
+        slider = range(start, min(len(choices)+start, MAX_SHOW+start))
+        for i in slider:
             is_unlocked = self.get_is_unlocked(choices[i])
             text = ''.join([choices[i]['text'], '' if is_unlocked else ' [locked]'])
-            self.render_choice(x, y+(offset * i), text, i == active_index)
+            self.render_choice(x, y + (offset * ((i - start) % MAX_SHOW)), text, i == active_index)
 
         self.canvas.bind_all('<Up>', self.handle_input)
         self.canvas.bind_all('<Down>', self.handle_input)

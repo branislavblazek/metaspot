@@ -63,7 +63,7 @@ MENU_GAMES = [
             {
                 'text': 'Level 03',
                 'value': 2,
-                'data': 'congratulation',
+                'data': 'monitor',
                 'credit': 15,
             },
             {
@@ -71,6 +71,18 @@ MENU_GAMES = [
                 'value': 3,
                 'data': 'linearalgebra',
                 'credit': 20,
+            },
+            {
+                'text': 'Level 05',
+                'value': 4,
+                'data': 'hippopotamus',
+                'credit': 25,
+            },
+            {
+                'text': 'Level 06',
+                'value': 5,
+                'data': 'abstractionisms',
+                'credit': 30,
             },
             {
                 'text': 'go back',

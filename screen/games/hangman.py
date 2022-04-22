@@ -4,10 +4,10 @@ import consts as c
 from utils import uppercase_string, is_uppercase_string
 from ..game_over import GameOver
 from ..game_winner import GameWinner
-from data_handler import SetData
 
 INTRO_START = 250
-INTRO_LETTER_SIZE = 110
+INTRO_LETTER_SIZE = 120
+MAX_ROW_LENGTH = 10
 
 INTRO_LETTERS = [
 	{ 'letter': 'N', 'offset': 2 },
@@ -24,7 +24,7 @@ HANGMAN_COORDS = [(100,50,100,350), (100,100,150,50), (100,50,250,50),
 	(250,160,300,220), (250,160,250,260), (250,260,220,320), (250,260,280,320)]
 
 class Hangman:
-	def __init__(self, canvas, data, handle_unlock_next_level, handle_after_game):
+	def __init__(self, canvas, data, handle_unlock_next_level, handle_after_game, is_dev=False):
 		self.canvas = canvas
 		self.data = data
 		self.data['data'] = uppercase_string(self.data['data'])
@@ -37,6 +37,7 @@ class Hangman:
 		self.guessed = []
 		self.handle_unlock_next_level = handle_unlock_next_level
 		self.handle_after_game = handle_after_game
+		self.is_dev = is_dev
 		self.render()
 
 	def intro(self, index=0):
@@ -53,13 +54,11 @@ class Hangman:
 		elif index >= 16: self.canvas.coords('level_text', 700, 600 - 18 * (index % 16))
 
 		if index <= 25:
-			self.canvas.after(0)
-			# 200
+			self.canvas.after(0 if self.is_dev else 200)
 			self.canvas.update()
 			if index == 25:
 				self.done_intro = True
-				self.canvas.after(0)
-				# 400
+				self.canvas.after(0 if self.is_dev else 400)
 				self.canvas.update()
 				self.render()
 			self.intro(index+1)
@@ -83,11 +82,12 @@ class Hangman:
 
 	def draw_word(self):
 		word = self.data['data']
-		x_start = 370
 		for letter_index in range(len(word)):
 			is_used = word[letter_index] in self.used
 			text = word[letter_index] if is_used else '_'
-			self.canvas.create_text(x_start + 60 * letter_index, 250, text=text, font=c.HEADING_FONT, fill='green', tag=self.tag)
+			x = 400 + 80 * (letter_index % MAX_ROW_LENGTH)
+			y = 120 + 120 * (letter_index // MAX_ROW_LENGTH)
+			self.canvas.create_text(x, y, text=text, font=c.HEADING_FONT, fill='green', tag=self.tag)
 
 	def handle_input(self, event):
 		letter = event.char
@@ -104,7 +104,7 @@ class Hangman:
 	def check_score(self):
 		con = True
 		corr_word = ''.join(sorted(set(self.data['data'])))
-		is_wrong = len(''.join(self.wrong)) == len(self.data['data'])
+		is_wrong = len(''.join(self.wrong)) == 10
 		is_right = ''.join(sorted(self.guessed)) == corr_word
 		if is_wrong:
 			self.game_over = True
@@ -122,10 +122,10 @@ class Hangman:
 		self.canvas.unbind_all('<Key>')
 
 		if not self.done_intro: self.intro()
-		elif self.game_over: GameOver(self.canvas, self.handle_after_game)
+		elif self.game_over: GameOver(self.canvas, self.handle_after_game, self.is_dev)
 		elif self.game_winner:
 			self.handle_unlock_next_level()
-			GameWinner(self.canvas, self.handle_after_game)
+			GameWinner(self.canvas, self.handle_after_game, self.is_dev)
 		else:
 			con = self.check_score()
 			if con:
