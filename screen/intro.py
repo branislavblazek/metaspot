@@ -69,5 +69,7 @@ class Intro:
             Input(self.canvas, c.HALF_WIDTH, c.INTRO_COMPONENT_OFFSET, c.INTRO_COMPONENT_WIDTH, self.choices[1], self.handle_name_enter, self.name, self.tag)
         elif self.active_choice == c.RESET_STATS:
             Prompt(self.canvas, c.HALF_WIDTH, c.INTRO_COMPONENT_OFFSET, c.INTRO_COMPONENT_WIDTH, self.choices[2], self.handle_reset_stats_input, self.handle_reset_stats_enter, self.reset_stats_index, self.tag)
+        elif self.active_choice == c.CHANGE_GAME_MODE:
+            self.on_action(c.CHANGE_GAME_MODE)
         elif self.active_choice == c.EXIT_GAME:
             Prompt(self.canvas, c.HALF_WIDTH, c.INTRO_COMPONENT_OFFSET, c.INTRO_COMPONENT_WIDTH, self.choices[2], self.handle_exit_input, self.handle_exit_enter, self.exit_prompt_index, self.tag)

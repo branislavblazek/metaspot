@@ -19,7 +19,7 @@ class Metaspot:
 		self.games = None
 		self.selected_game = None
 		self.selected_level = None
-		self.version = "1.0"
+		self.version = "1.1"
 		self.is_dev = False
 		self.update_game()
 		self.render()
@@ -39,6 +39,8 @@ class Metaspot:
 			self.isIntro = True
 			self.isMenu = False
 			self.update_game()
+		elif attr == c.CHANGE_GAME_MODE:
+			self.is_dev = 1 - self.is_dev
 		elif attr in [c.START_HANGMAN, c.START_CRACK_THE_CODE]:
 			self.isIntro = False
 			self.isMenu = False
@@ -63,9 +65,6 @@ class Metaspot:
 			self.selected_game = None
 			self.selected_level = None
 			self.isIntro = True
-		else:
-			print(self.selected_game, self.selected_level)
-			pass
 		self.render()
 
 	def render(self):

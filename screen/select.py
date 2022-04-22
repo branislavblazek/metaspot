@@ -13,7 +13,6 @@ class Select(object):
         self.choices = choices
 
         start = 0 if self.active_index < MAX_SHOW else (self.active_index + 1) % MAX_SHOW
-        print(self.active_index, MAX_SHOW)
         slider = range(start, min(len(choices)+start, MAX_SHOW+start))
         for i in slider:
             is_unlocked = self.get_is_unlocked(choices[i])

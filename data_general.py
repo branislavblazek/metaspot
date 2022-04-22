@@ -26,6 +26,10 @@ INTRO_ACTIONS = [
         ]
     },
     {
+        'text': 'change game mode [prod/dev]',
+        'value': c.CHANGE_GAME_MODE,
+    },
+    {
         'text': 'exit',
         'value': c.EXIT_GAME,
         'heading': 'Are you sure?',
@@ -51,7 +55,7 @@ MENU_GAMES = [
             {
                 'text': 'Level 01',
                 'value': 0,
-                'data': 'pythonAZaz',
+                'data': 'eagle',
                 'credit': 5,
             },
             {
@@ -63,7 +67,7 @@ MENU_GAMES = [
             {
                 'text': 'Level 03',
                 'value': 2,
-                'data': 'monitor',
+                'data': 'ilikesunnyweather',
                 'credit': 15,
             },
             {

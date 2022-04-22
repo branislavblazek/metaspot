@@ -28,6 +28,7 @@ START_HANGMAN = 'Start Hangman'
 START_CRACK_THE_CODE = 'Start Crack the Code'
 RESTART_GAME = 'Restart Game'
 RESET_STATS = 'Reset Stats'
+CHANGE_GAME_MODE = 'Change Game Mode'
 
 # FILES
 USER_FILE = 'data/user.txt'
